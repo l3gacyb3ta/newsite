@@ -1,0 +1,55 @@
+.feature {
+  position: relative;
+  display: inline-block;
+  min-height: $spacing-unit*10;
+  img {
+    width: auto;
+    height: auto;
+    max-height: 80vh;  
+    margin: 0 auto -20px;
+    &[src*="svg"] {
+      height: 75vh;
+      min-height: 600px;
+    }
+  }
+  tiles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    tile {
+      background: none;
+      text-align: left;
+      border: 8px solid rgba(255, 255, 255, .5);
+      box-shadow: 0 0 18px rgba(0, 0, 0, .25);
+      border-radius: $border-radius*3;
+      margin-right: 0;
+      margin-bottom: 0;
+      transition: border-color 400ms ease;
+      &:hover {
+        border-color: white;
+        transform: none;
+      }
+    }
+  }
+}
+p.metadata {
+  margin-top: 0.5em;
+  font-style: italic;
+  &.feature-above {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+// feature {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+//   grid-template-rows: repeat(auto-fill, minmax(40px, 1fr));
+//   grid-auto-flow: row dense;
+// }

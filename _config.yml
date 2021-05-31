@@ -1,0 +1,46 @@
+# Metadata
+title: "Raleigh Wise!"
+description: "I’m an interactive web developer, full stack python dev, artist & AI enthusiast. Here's something interesting I worked on!"
+keywords: ["web developer", "designer", "jekyll", "artist", "python"]
+domain: "https://raleighwi.se"
+
+# Third party services
+# (Anything you put here will be public!)
+google-analytics:
+github: "l3gacyb3ta/newsite"
+branch: "glitch"
+glitch: "melody"
+
+# Rubygems
+# (The ones used for this site breaks GitHub Pages)
+plugins:
+  - jekyll-archives
+  - jekyll-default-layout
+  - jekyll-auto-image
+  - jekyll-postfiles
+
+# Build settings
+encoding: utf-8
+markdown: kramdown
+exclude:
+  - .sass-cache/
+  - node_modules/
+  - .gitignore
+  - Gemfile
+  - _config.yml
+  - glitch.json
+  - package.json
+  - package-lock.json
+  - watch.json
+  - "*.save.*"
+
+# Permalinks
+permalink: /:title/
+
+# Tags
+jekyll-archives:
+  enabled:
+    - tags
+  layout: archive
+  permalinks:
+    tag: '/hashtag/:name/'

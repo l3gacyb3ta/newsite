@@ -1,0 +1,16 @@
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin color-scheme($scheme) {
+  body.force-theme-#{$scheme} {
+    @content
+  }
+  @media (prefers-color-scheme: $scheme) {
+    body {
+      @content
+    }
+  }
+}

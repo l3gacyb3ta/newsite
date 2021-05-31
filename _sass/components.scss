@@ -1,0 +1,154 @@
+yeet {
+  display: inline-block;
+  background: white;
+  background: linear-gradient(to bottom right, #D99AB5, #A054B1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+project {
+  img {
+    display: block;
+    max-width: 200px;
+    margin-top: 1em;
+  }
+}
+
+talk {
+  display: block;
+  padding: 0 1em 1em;
+  margin-bottom: 1em;
+  border-radius: $border-radius;
+  border: 2px solid rgba($color, .25);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  @include media-query($on-tablet) {
+    background-image: none !important;
+  }
+}
+
+blogroll {
+  & > a {
+    display: block;
+    padding: 1px $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 2;
+    border-radius: $border-radius;
+    box-shadow: 0px 10px 20px lightgray;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    transition: transform 150ms ease-in, box-shadow 150ms linear;
+    text-decoration: none;
+    color: white!important;
+  }
+}
+@include color-scheme(dark) {
+  blogroll > a {
+    box-shadow: none!important;
+  }
+}
+
+
+article {
+  padding-top: 2em;
+}
+
+.construction {
+  background: lighten($duo, 10%);
+  color: $color;
+  padding: 1em;
+  border-radius: $border-radius;
+}
+
+// _includes/events.html
+ul.events-list {
+  padding-left: 0;
+  display: grid;
+  li {
+    list-style: none;
+    border: 2px solid currentColor;
+    border-radius: $border-radius;
+    padding: .5rem;
+    // margin-bottom: 1rem;
+  }
+}
+
+// _includes/toggle-theme.html
+.toggle-themes {
+  display: inline-block;
+  position: absolute;
+  top: 1.25rem;
+  right: calc(40px - .5rem); // .5rem;
+  text-align: right;
+  @include media-query($on-phone) {
+    top: .5rem;
+    right: .5rem;
+  }
+}
+body {
+  .toggle-theme-light {
+    display: none;
+  }
+  .toggle-theme-reset {
+    display: none;
+    transform: scale(0.75) translateX(-5%);
+    transform-origin: top right;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    .toggle-theme-light {
+      display: inline-block;
+    }
+    .toggle-theme-dark {
+      display: none;
+    }
+  }
+}
+body.force-theme-dark {
+  .toggle-theme-light {
+    display: inline-block!important;
+  }
+  .toggle-theme-dark {
+    display: none!important;
+  }
+  .toggle-theme-reset {
+    display: inline-block;
+  }
+}
+body.force-theme-light {
+  .toggle-theme-light {
+    display: none!important;
+  }
+  .toggle-theme-dark {
+    display: inline-block!important;
+  }
+  .toggle-theme-reset {
+    display: inline-block;
+  }
+}
+
+// Coming Soon
+.coming-soon {
+  opacity: .5;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  h1 {
+    margin-top: 0;
+  }
+}
+
+// Patreon Beg
+#patreon-beg {
+  .button {
+    color: currentColor;
+  }
+}
+
+// Plug / Bio
+#plug {
+  img.headshot {
+    float: left;
+    margin-left: 1ch;
+  }
+}

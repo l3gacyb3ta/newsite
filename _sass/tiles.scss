@@ -1,0 +1,168 @@
+tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $spacing-unit [col-start]);
+  grid-auto-columns: $spacing-unit;
+  grid-auto-rows: $spacing-unit;
+  grid-auto-flow: row dense;
+  justify-content: space-evenly;
+  tile, & > a {
+    text-decoration: none;
+    grid-column: auto / span 5;
+    grid-row: auto / span 5;
+    display: flex;
+    position: relative;
+    padding: $spacing-unit;
+    margin-right: $spacing-unit;
+    margin-bottom: $spacing-unit;
+    border-radius: 8px;
+    box-shadow: 0px 10px 20px lightgray;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    transition: transform 150ms ease-in, box-shadow 150ms linear;
+    @include media-query($on-tablet) {
+      // margin-left: 0!important;
+      // margin-top: 0!important;
+    }
+    h1, h2, h3 {
+      align-self: flex-end;
+      margin: 0;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75); // , 0 2px 2px rgba(0, 0, 0, 0.55);
+      span {
+        // from https://wesbos.com/css-highlight-animation/
+        position: relative;
+        display: inline;
+        background-image: linear-gradient(to right, transparent, blue);
+        background-position: 0;
+        // make the background twice as big
+        background-size: 200%;
+        transition: background 450ms ease;
+        transform: translateZ(0px);
+        padding-right: .5ch;
+        &:after {
+          position: absolute;
+          bottom: 0;
+          left: 100%;
+          content: '→';
+          opacity: 0;
+          transform: translateX(0px);
+          text-shadow: 0 0 10px rgba(50,50,50,.5);
+        }
+      }
+    }
+    .draft-banner {
+      position: absolute;
+      top: 10px;
+      right: -10px;
+      font-family: $header-font;
+      font-weight: normal;
+      background: #FFEA56;
+      color: black;
+      transform: rotate(25deg);
+      box-shadow: 3px 3px 0 2px rgba(50,50,50,.25);
+      padding: 2px 10px;
+      border-radius: 4px;
+    }
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 20px darken(lightgray, 10%);
+      h3 span {
+        background-position: -100%;
+        &:after {
+          transition: opacity 250ms linear 200ms, transform 250ms ease 200ms;
+          opacity: 1;
+          transform: translateX(.75ch);
+        }
+      }
+    }
+  }
+  &.posts {
+    @include media-query($on-phone) {
+      grid-template-columns: repeat(12, 40px [col-start]);
+    }
+    @include media-query(489px) {
+      grid-template-columns: repeat(9, 40px [col-start]);
+    }
+    @include media-query(349px) {
+      grid-template-columns: repeat(auto-fill, 40px [col-start]);
+    }
+    tile, & > a {
+      @include media-query(1095px) {
+        grid-column: auto / span 7 !important;
+        grid-row: auto / span 7 !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+      }
+      @include media-query($on-phone) {
+        grid-column: auto / span 4 !important;
+        grid-row: auto / span 6 !important;
+        padding: 0;
+        margin-bottom: $spacing-unit*3;
+        h3 {
+          align-self: initial;
+          margin-top: $spacing-unit*3 !important;
+          text-shadow: none;
+          font-size: 1em;
+          padding-top: .5em;
+          color: $color;
+        }
+      }
+      @include media-query(489px) {
+        grid-column: auto / span 3 !important;
+        grid-row: auto / span 5 !important;
+        padding: 0;
+        /* margin-bottom: $spacing-unit*3; */
+        margin-right: 20px !important;
+        margin-bottom: 94px !important;
+        h3 {
+          font-size: .85em;
+          margin-top: 104px !important;
+          padding-top: .35em;
+        }
+      }
+    }
+  }
+}
+
+@include color-scheme(dark) {
+  tiles {
+    tile, & > a {
+      h3 {
+        color: white !important;
+      }
+    }
+  }
+}
+
+@include color-scheme(light) {
+  tiles > a {
+    box-shadow: 0px 10px 20px lightgray;
+    &:hover {
+      box-shadow: 0px 10px 20px darken(lightgray, 10%);
+    }
+  }
+}
+@include color-scheme(dark) {
+  tiles > a {
+    box-shadow: 0px 10px 20px darken($color, 2.5%);
+    &:hover {
+      box-shadow: 0px 10px 20px darken($color, 5%);
+    }
+  }
+}
+
+.squiddo {
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    top: -8%;
+    left: 5%;
+    content: " ";
+    background-image: url(/media/squiddo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  h3 {
+    position: relative;
+  }
+}

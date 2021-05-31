@@ -1,0 +1,14 @@
+header {
+  background: $color;
+  color: $background;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  p {
+    text-align: center;
+    margin: 1em auto 2em;
+  }
+  img {
+    margin-bottom: -8px;
+  }
+}

@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: lighten($background, 10%);
+  background: lighten($color, 20%);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $body-font;
+  font-size: $font-size;
+  margin: 0 auto;
+  &.animate-theme-change {
+    transition: background 500ms ease-in, color 500ms ease-in;
+  }
+}
+
+body, body.force-theme-light {
+  background: $background;
+  color: $color;
+}
+@include color-scheme(dark) {
+  background: $color;
+  color: #ecd1fa; // $background;
+}
+
+header, section, footer {
+  position: relative;
+}
+
+img#welcome {
+  vertical-align: sub;
+}
+
+img, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: $header-font;
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+  @include media-query($on-tablet) {
+    font-size: 2.5rem;
+  }
+  @include media-query($on-phone) {
+    margin-block-start: 0.5em;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  @include media-query($on-tablet) {
+    font-size: 1.8rem;
+  }
+}
+
+h3 {
+  font-size: 1.45rem;
+}
+
+h4 {
+  margin-bottom: 1rem;
+}
+
+p {
+  max-width: $content-width;
+  line-height: $line-height;
+
+  &.lead {
+    font-size: 1.25rem;
+
+    @include media-query($on-tablet) {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+svg {
+  vertical-align: bottom;
+}
+
+hr {
+  border: none;
+  height: 6px;
+  background: currentColor;
+  mask-image: url(../media/squiggly.svg);
+  -webkit-mask-image: url(../media/squiggly.svg);
+  opacity: .75;
+  margin: 2em 0;
+}
+
+blockquote {
+  margin: 1em 0;
+  padding: 1px 1em;
+  border-radius: 0;
+  background: rgba(gray, .35);
+  border-radius: $border-radius;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none!important;
+  }
+}
+
+body, body.force-theme-light {
+  .hidden-theme-dark, .visible-theme-light {
+    visibility: visible;
+    display: inherit;
+  }
+  .hidden-theme-light, .visible-theme-dark {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@include color-scheme (dark) {
+  .hidden-theme-dark, .visible-theme-light {
+    visibility: hidden;
+    display: none;
+  }
+  .hidden-theme-light, .visible-theme-dark {
+    visibility: visible;
+    display: inherit;
+  }
+}

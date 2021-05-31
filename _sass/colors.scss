@@ -1,0 +1,58 @@
+/* Color utilities */
+
+.uno, .duo, .tre {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0 .5ch;
+  &:hover {
+    filter: brightness(1.5) hue-rotate(-15deg);
+  }
+}
+
+  .uno {
+    background-color: rgba($uno, .2);
+    color: darken($uno, 10%);
+    border-color: $uno;
+  }
+
+@include color-scheme(dark) {
+  .uno {
+    background-color: rgba(240, 117, 199, 0.2); // rgba($uno, .2);
+    color: $uno;
+    border-color: $uno;
+  }
+}
+
+.duo {
+  background-color: rgba($duo, .2);
+  color: darken($duo, 10%);
+  border-color: $duo;
+}
+
+.tre {
+  background-color: rgba($tre, .2);
+  color: darken($tre, 10%);
+  border-color: $tre;
+}
+
+@each $color in $colors-list {
+  .bg-#{nth($color, 1)} {
+    background-color: nth($color, 2);
+    color: white;
+  }
+  .accent-#{nth($color, 1)} {
+    blockquote {
+      background-color: rgba(nth($color, 2), .35);
+    }
+    #main a:not(.uno) {
+      color: darken(nth($color, 2), 2%);
+    }
+  }
+  @include color-scheme(dark) {
+    &.accent-#{nth($color, 1)} {
+      #main a:not(.uno) {
+        color: lighten(nth($color, 2), 20%);
+      }
+    }
+  }
+}

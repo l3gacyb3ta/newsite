@@ -1,0 +1,61 @@
+---
+layout: page
+---
+
+<h1>#<yeet>{{ page.title }}</yeet></h1>
+
+<hr>
+
+<style>
+{% capture tiles_style %}
+@import "variables";
+@import "mixins";
+
+{% for post in page.posts %}{% unless post.hidden %}
+  #tile-{{ post.slug }} {
+    grid-column: auto / span calc({{ post.tile.width }} + 1);
+    grid-row: auto / span calc({{ post.tile.height }} + 1);
+    {% if post.tile.image %}background-image: url({{ post.tile.image | prepend: post.url }}); background-size: cover; background-position: center;{% endif %}
+    cursor: pointer;
+    h3 span {
+      background-image: linear-gradient(to right, transparent 50%, lighten({{ post.accent }}, 15%) 90%);
+    }
+    @include media-query(1095px) {
+      grid-column: auto / span 7;
+      grid-row: auto / span 7;
+    }
+    @include media-query(1319px) {
+      grid-column: auto / span calc({{ post.tile.width }} + 1);
+      /* grid-row: auto / span calc({{ post.tile.height }} + 1); */
+      margin-left: 0;
+      /* margin-top: 0; */
+    }
+  }
+{% endunless %}{% endfor %}{% endcapture %}
+{{ tiles_style | scssify }}
+</style>
+
+<tiles class="posts">
+  {% for post in page.posts %}{% unless post.hidden %}
+    <a href="{{ post.url }}" id="tile-{{ post.slug }}" class="tile bg-{{ post.accent }} {{ post.tile.class }}">
+      <h3><span title="{{ post.title }}">{{ post.title }}</span></h3>
+      {% if post.draft %}<span class="draft-banner">COMING SOON</span>{% endif %}
+    </a>
+  {% endunless %}{% endfor %}
+</tiles>
+
+<!-- <blogroll class="visible-phone">
+  {% for post in page.posts %}{% unless post.hidden %}
+    <a href="{{ post.url }}" class="bg-{{ post.accent }}">
+      <h3>{{ post.title }}</h3>
+      <p class="metadata">
+        Published {{ post.date | date: "%B %-d, %Y" }} •
+        {% include read-time.html content=post.content %} read
+      </p>
+    </a>
+  {% endunless %}{% endfor %}
+</blogroll> -->
+
+<hr>
+
+<a href="/" class="button uno">← Back Home</a>
